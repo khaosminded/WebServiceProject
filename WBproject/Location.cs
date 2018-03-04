@@ -3,11 +3,13 @@ using System.IO;
 using System.Net;
 using System.Text;
 
+using Newtonsoft.Json.Linq;
 
 namespace WBproject
 {
     public class Location
     {
+        public string steet;
         public string city;
         public string state;
         public float longitude;
@@ -16,8 +18,9 @@ namespace WBproject
 
 
 
-        public void setLocation(string city, string state, float longitude, float latitude, string zipcode)
+        public void setLocation(string street,string city, string state, float longitude, float latitude, string zipcode)
         {
+            this.steet = street;
             this.city = city;
             this.state = state;
             this.longitude = longitude;
@@ -66,7 +69,7 @@ namespace WBproject
                 
             //Console.WriteLine(serviceResult);
         }
-        public void getByGoogle()
+        public void Geocoding()
         {
             //google api key
             //AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0
@@ -74,6 +77,39 @@ namespace WBproject
         public override string ToString()
         {
             return city+","+state+","+zipcode;
+        }
+        public double getDistance(Location A, Location B)
+        {
+            double result;
+            result = Math.Pow(A.latitude - B.latitude, 2) +
+                         Math.Pow(A.longitude - B.longitude, 2);
+            result = Math.Sqrt(result);
+            return result;
+        }
+        public string  reverseGeocoding()
+        {
+            //https://maps.googleapis.com/maps/api/geocode/json?latlng
+            //=40.714224,-73.961452&key=YOUR_API_KEY
+            var serviceURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+
+                this.latitude+","+this.longitude+
+                    "&result_type=street_address"+
+                    "&key=AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(serviceURL);
+            request.Method = "GET";
+            request.ContentType = "text/xml; charset=utf-8";
+            request.ContentLength = 0;
+
+            HttpWebResponse serviceResponse = (HttpWebResponse)request.GetResponse();
+            Stream receiveStream = serviceResponse.GetResponseStream();
+            Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
+            StreamReader readStream = new StreamReader(receiveStream, encode, true);
+            string json = readStream.ReadToEnd();
+            JObject jo = JObject.Parse(json);
+
+             
+
+            return (string)jo["results"][0]["formatted_address"]; 
+
         }
     }
 }

@@ -9,6 +9,8 @@
     <PackageReference Include="CSM.SodaDotNet" Version="0.8.0" />
     <PackageReference Include="CSM.SodaDotNet.Utilities" Version="0.8.0" />
     <PackageReference Include="JSON" Version="1.0.1" />
+    <PackageReference Include="CrossPlatformLibrary.Geolocation" Version="1.0.25" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>
