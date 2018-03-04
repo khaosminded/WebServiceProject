@@ -27,11 +27,11 @@ namespace WBproject
 
 
 
-        public void get_Location()
+        public void get()
         {
-            get_Location(null);
+            getByIP(null);
         }
-        public void get_Location(IPAddress ip)
+        public void getByIP(IPAddress ip)
         {
             
             var serviceURL = "http://freegeoip.net/json/";
@@ -66,7 +66,12 @@ namespace WBproject
                 
             //Console.WriteLine(serviceResult);
         }
-        public string ToString()
+        public void getByGoogle()
+        {
+            //google api key
+            //AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0
+        }
+        public override string ToString()
         {
             return city+","+state+","+zipcode;
         }
