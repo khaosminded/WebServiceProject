@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Web Service Project";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+<div class="row">
+  <div class="column" ">
+    <div id="map" style="width:500px;height:380px;"></div>
+    <p>Some text..</p>
+  </div>
+  <div class="column" ">
+    <h2>Column 2</h2>
+    <p>Some text..</p>
+  </div>
+</div>
+////////
+    <script>
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 47, lng: -122.644},
+          zoom: 14
+        });
+        var you = new google.maps.InfoWindow({content:"You"});
+        var myRange = new google.maps.Circle({
+          radius:250,
+          strokeColor:"#0000FF",
+          strokeOpacity:0.2,
+          strokeWeight:2,
+          fillColor:"#0000FF",
+          fillOpacity:0.1
+          });
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            map.setCenter(pos);
+            you.setPosition(pos);
+            //you.setMap(map);
+            myRange.setCenter(pos);
+            myRange.setMap(map);
+            
+            var pointA={lat: 47.246748, lng: -122.440114};
+            var pointB={lat: 47.2466315,lng:-122.4423885};
+            var pList=[pointA,pointB];
+            plotEvents(pList,map);
+
+
+
+            //end
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+      function plotEvents(pList,map){
+
+        var markerList=[];
+        for (var i = 0; i < pList.length; i++) {
+        var string="("+pList[i]["lat"]+","+pList[i]["lng"]+")";
+        var marker=new google.maps.Marker({position:pList[i]});
+        var infowindow = new google.maps.InfoWindow({content:string});
+        marker.info=infowindow;
+        marker.map=map;
+        marker.open=function() {this.info.open(this.map,this)};
+        marker.close=function(){this.info.close()};
+        markerList.push(marker);
+        markerList[i].setMap(map);
+        google.maps.event.addListener(markerList[i], 'mouseover', markerList[i].open);
+        google.maps.event.addListener(markerList[i], 'mouseout', markerList[i].close);
+        }
+
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0&callback=initMap">
+    </script>
+<aside style="float:upright;margin-left: 650px;border-left: 1px solid gray;padding: 1em;overflow: hidden;">
+    <p>Use this area to provide additional information.</p>
+</aside>

@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{977800B6-7DDB-4C81-8957-81F76A1273B2}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WBproject/Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="WBproject/Program.cs" Line="33" Column="24" />
+      <File FileName="WBproject/Location.cs" Line="107" Column="30" />
+      <File FileName="WBproject/Map.cs" Line="9" Column="15" />
+      <File FileName="WBproject/FireIncidents.cs" Line="85" Column="40" />
+      <File FileName="WBproject/Crime.cs" Line="17" Column="13" />
+      <File FileName="WBproject/TrafficCollision.cs" Line="42" Column="58" />
+      <File FileName="WBproject/Test.cs" Line="29" Column="13" />
+      <File FileName="WBproject/Models/Point.cs" Line="9" Column="16" />
+      <File FileName="WBproject/Controllers/HomeController.cs" Line="20" Column="21" />
+      <File FileName="WBproject/Views/Home/Map.cshtml" Line="50" Column="14" />
+      <File FileName="WBproject/Views/Shared/_Layout.cshtml" Line="42" Column="15" />
+      <File FileName="WBproject/Views/Shared/Error.cshtml" Line="1" Column="1" />
+      <File FileName="WBproject/Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="WBproject/Startup.cs" Line="1" Column="1" />
+      <File FileName="WBproject/Views/Home/Index.cshtml" Line="7" Column="77" />
+      <File FileName="WBproject/Views/_ViewImports.cshtml" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.WBproject PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

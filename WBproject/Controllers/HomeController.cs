@@ -15,9 +15,9 @@ namespace WBproject.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Map()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Events Map!";
 
             return View();
         }

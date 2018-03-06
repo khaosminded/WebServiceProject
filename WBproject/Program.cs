@@ -8,6 +8,8 @@ using System.Net;
 using System.Text;
 
 using Json;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using SODA;
 
 namespace WBproject
@@ -21,6 +23,12 @@ namespace WBproject
 
 
 
+
+            BuildWebHost(args).Run();
+
+        }
+        public static void getAllEvents()
+        {
             Location locate = new Location();
             locate.get();
             int radius = 250;
@@ -29,33 +37,32 @@ namespace WBproject
             Console.WriteLine("({0},{1})", locate.longitude, locate.latitude);
             Console.Write(locate.reverseGeocoding());
 
-            ////locate.latitude = (float)47.244615;
-            ////locate.longitude = (float)-122.4380899;
-                
+            //locate.latitude = (float)47.244615;
+            //locate.longitude = (float)-122.4380899;
 
 
 
-            //TrafficCollision collisions = new TrafficCollision();
-            //collisions.get(locate,radius);
-            //foreach(var v in  collisions.list)
-            //{
-            //    Console.WriteLine(v);
-            //}
-            //Crimes crime = new Crimes();
-            //crime.get(locate,radius);
-            //foreach(var v in  crime.list)
-            //{
-            //    Console.WriteLine(v);
 
-            //}
-            //FireIncidents fire = new FireIncidents();
-            //fire.get(locate,radius);
-            //foreach (var v in fire.list)
-            //{
-            //    Console.WriteLine(v);
-            //}
+            TrafficCollision collisions = new TrafficCollision();
+            collisions.get(locate,radius);
+            foreach(var v in  collisions.list)
+            {
+                Console.WriteLine(v);
+            }
+            Crimes crime = new Crimes();
+            crime.get(locate,radius);
+            foreach(var v in  crime.list)
+            {
+                Console.WriteLine(v);
 
-
+            }
+            FireIncidents fire = new FireIncidents();
+            fire.get(locate,radius);
+            foreach (var v in fire.list)
+            {
+                Console.WriteLine(v);
+            }
         }
+        public static IWebHost BuildWebHost(string[] args) =>             WebHost.CreateDefaultBuilder(args)                 .UseStartup<Startup>()                 .Build(); 
     }
 }
