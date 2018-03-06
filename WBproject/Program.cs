@@ -23,7 +23,7 @@ namespace WBproject
 
             Location locate = new Location();
             locate.get();
-            int radius = 2500;
+            int radius = 250;
 
             Console.Write(locate.ToString());
             Console.WriteLine("({0},{1})", locate.longitude, locate.latitude);
@@ -35,12 +35,12 @@ namespace WBproject
 
 
 
-            TrafficCollision collisions = new TrafficCollision();
-            collisions.get(locate,radius);
-            foreach(var v in  collisions.list)
-            {
-                Console.WriteLine(v);
-            }
+            //TrafficCollision collisions = new TrafficCollision();
+            //collisions.get(locate,radius);
+            //foreach(var v in  collisions.list)
+            //{
+            //    Console.WriteLine(v);
+            //}
             //Crimes crime = new Crimes();
             //crime.get(locate,radius);
             //foreach(var v in  crime.list)
