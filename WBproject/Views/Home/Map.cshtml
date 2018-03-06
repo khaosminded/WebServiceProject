@@ -3,38 +3,12 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
-<style>
-* {
-    box-sizing: border-box;
-}
-
-/* Create two equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-</style>
-<div class="row">
-  <div class="column" ">
-    <div id="map" style="width:500px;height:380px;"></div>
-    <p>Some text..</p>
-  </div>
-  <div class="column" ">
-    <h2>Column 2</h2>
-    <p>Some text..</p>
-  </div>
-</div>
-////////
+<div id="map" style="width:500px;height:380px;"></div>
     <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -110,6 +84,4 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0&callback=initMap">
     </script>
-<aside style="float:upright;margin-left: 650px;border-left: 1px solid gray;padding: 1em;overflow: hidden;">
-    <p>Use this area to provide additional information.</p>
-</aside>
+<p>Use this area to provide additional information.</p>
