@@ -17,17 +17,23 @@ namespace WBproject.Controllers
 
         public IActionResult Map()
         {
+            return Map(47.246748, -122.440114);
+
+        }
+        [Route("Home/Map/$lat={lat}$lng={lng}")]
+        public IActionResult Map(double lat, double lng)
+        {
             ViewData["Message"] = "Events Map!";
 
             Crimes crime = new Crimes();
-            Location loc = new Location(-122.440114, 47.246748);
-            crime.get(loc, 250,5);
+            Location loc = new Location(lng,lat);
+            crime.get(loc, 250, 5);
             IList<Point> locList = new List<Point>();
             IList<string> eventList = new List<string>();
-            foreach(var c in crime.list)
+            foreach (var c in crime.list)
             {
                 locList.Add(new Point() { lng = c.loc.longitude.ToString(), lat = c.loc.latitude.ToString() });
-                eventList.Add(c.crime);
+                eventList.Add(c.ToString());
                 Console.WriteLine(c.crime);
             }
 
@@ -38,7 +44,6 @@ namespace WBproject.Controllers
             return View();
 
         }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

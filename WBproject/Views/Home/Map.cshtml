@@ -30,12 +30,12 @@
   </div>
   <div class="column">
         <p>SOME DETAILS</p>
-        
+        <div style="width:500px;height:380px;overflow: auto;">
 @foreach (var v in ViewData["crimeEventList"] as IList<string> )
     { 
             <p># @v</p>
 
-    } 
+    }     </div>
   </div>
 </div>
 
