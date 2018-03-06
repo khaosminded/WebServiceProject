@@ -15,9 +15,16 @@ namespace WBproject
         public float longitude;
         public float latitude;
         public string zipcode;
+        public Location()
+        {
 
+        }
 
-
+        public Location(double lng,double lat)
+        {
+            longitude = (float)lng;
+            latitude = (float)lat;
+        }
         public void setLocation(string street,string city, string state, float longitude, float latitude, string zipcode)
         {
             this.steet = street;

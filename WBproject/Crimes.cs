@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 using SODA;
 
 namespace WBproject
 {
     public class Crimes
     {
-        public ArrayList list;
+        public ArrayList<Crime> list;
         public class Crime
         {
             public string intersection_address;
@@ -30,14 +31,18 @@ namespace WBproject
 
         public Crimes()
         {
-            list = new ArrayList();
+            list = new ArrayList<Crime>();
 
         }
         public void sorting()
         {
             
         }
-        public void get(Location locate,int radius)
+        public void get(Location locate, int radius)
+        {
+            get(locate,radius,1000);
+        }
+        public void get(Location locate,int radius,int limit)
         {
             var client = new SodaClient("data.cityoftacoma.org", "faxxyxOUEBkwIxlgvMgFaEViQ");
 
@@ -47,7 +52,7 @@ namespace WBproject
             string sql = "within_circle(intersection," +
                 locate.latitude.ToString() + "," +
                       locate.longitude.ToString() + ","+radius.ToString()+")";
-            var soql = new SoqlQuery().Where(sql);
+            var soql = new SoqlQuery().Where(sql).Limit(limit);
 
             var results = dataset.Query(soql);
 
@@ -80,4 +85,5 @@ namespace WBproject
             }
         }
     }
+
 }

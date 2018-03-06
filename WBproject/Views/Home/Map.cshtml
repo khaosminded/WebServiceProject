@@ -3,12 +3,43 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
-<div id="map" style="width:500px;height:380px;"></div>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 400px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+<div class="row">
+  <div class="column">
+    <div id="map" style="width:500px;height:380px;"></div>
+    <p>Some text..</p>
+  </div>
+  <div class="column">
+        <p>SOME DETAILS</p>
+        
+@foreach (var v in ViewData["crimeEventList"] as IList<string> )
+    { 
+            <p># @v</p>
+
+    } 
+  </div>
+</div>
+
     <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -36,11 +67,27 @@
             //you.setMap(map);
             myRange.setCenter(pos);
             myRange.setMap(map);
-            
-            var pointA={lat: 47.246748, lng: -122.440114};
-            var pointB={lat: 47.2466315,lng:-122.4423885};
-            var pList=[pointA,pointB];
-            plotEvents(pList,map);
+
+            var pList=[];
+            var iList=[];
+@foreach (var v in ViewData["crimeLocList"] as IList<Point> )
+{
+    <text>
+    var point={lat:@(v.lat),lng:@(v.lng)};
+    pList.push(point);
+    </text>
+}
+@foreach (var e in ViewData["crimeEventList"] as IList<string> )
+{
+    <text>
+    var info="@e";
+    iList.push(info);
+    </text>
+}
+            //var pointA={lat: 47.246748, lng: -122.440114};
+            //var pointB={lat: 47.2466315,lng:-122.4423885};
+
+            plotEvents(pList,iList,map);
 
 
 
@@ -54,11 +101,12 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-      function plotEvents(pList,map){
+  function plotEvents(pList,iList,map){
 
         var markerList=[];
         for (var i = 0; i < pList.length; i++) {
         var string="("+pList[i]["lat"]+","+pList[i]["lng"]+")";
+    string = iList[i];
         var marker=new google.maps.Marker({position:pList[i]});
         var infowindow = new google.maps.InfoWindow({content:string});
         marker.info=infowindow;
@@ -81,7 +129,6 @@
       }
 
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0&callback=initMap">
     </script>
-<p>Use this area to provide additional information.</p>
+

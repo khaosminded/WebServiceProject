@@ -1,7 +1,14 @@
 ﻿<Properties StartupConfiguration="{977800B6-7DDB-4C81-8957-81F76A1273B2}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WBproject/Views/Home/Map.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WBproject/Models/Point.cs">
     <Files>
-      <File FileName="WBproject/Views/Home/Map.cshtml" Line="87" Column="56" />
+      <File FileName="WBproject/Views/Home/Map.cshtml" Line="33" Column="54" />
+      <File FileName="WBproject/Controllers/HomeController.cs" Line="27" Column="34" />
+      <File FileName="WBproject/Program.cs" Line="52" Column="41" />
+      <File FileName="WBproject/Crimes.cs" Line="16" Column="32" />
+      <File FileName="WBproject/Location.cs" Line="19" Column="10" />
+      <File FileName="WBproject/Startup.cs" Line="50" Column="1" />
+      <File FileName="WBproject/Properties/launchSettings.json" Line="10" Column="16" />
+      <File FileName="WBproject/Models/Point.cs" Line="8" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

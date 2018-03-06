@@ -19,7 +19,24 @@ namespace WBproject.Controllers
         {
             ViewData["Message"] = "Events Map!";
 
+            Crimes crime = new Crimes();
+            Location loc = new Location(-122.440114, 47.246748);
+            crime.get(loc, 250,5);
+            IList<Point> locList = new List<Point>();
+            IList<string> eventList = new List<string>();
+            foreach(var c in crime.list)
+            {
+                locList.Add(new Point() { lng = c.loc.longitude.ToString(), lat = c.loc.latitude.ToString() });
+                eventList.Add(c.crime);
+                Console.WriteLine(c.crime);
+            }
+
+            Console.WriteLine("!!&!*@#!((((((requested");
+
+            ViewData["crimeLocList"] = locList;
+            ViewData["crimeEventList"] = eventList;
             return View();
+
         }
 
         public IActionResult Contact()

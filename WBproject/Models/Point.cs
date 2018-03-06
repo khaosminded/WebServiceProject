@@ -5,13 +5,8 @@ namespace WBproject.Models
 {
     public class Point
     {
-        string type { get; set; }
-        public class coordinates {
-            float longtitude { get; set; }
-            float latitude { get; set; }
-        };
-       
- 
 
+        public string lng { get; set; }
+        public string lat { get; set; }
     }
 }
