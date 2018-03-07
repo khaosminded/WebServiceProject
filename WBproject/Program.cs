@@ -63,6 +63,7 @@ namespace WBproject
                 Console.WriteLine(v);
             }
         }
-        public static IWebHost BuildWebHost(string[] args) =>             WebHost.CreateDefaultBuilder(args)                 .UseStartup<Startup>()                 .Build(); 
+        public static IWebHost BuildWebHost(string[] args) =>             WebHost.CreateDefaultBuilder(args)
+                   .UseUrls("http://localhost:8080/")                 .UseStartup<Startup>()                 .Build(); 
     }
 }

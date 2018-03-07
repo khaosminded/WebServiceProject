@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{977800B6-7DDB-4C81-8957-81F76A1273B2}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WBproject/Views/Home/Contact.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WBproject/Views/Home/Map.cshtml">
     <Files>
-      <File FileName="WBproject/Views/Home/Map.cshtml" Line="37" Column="13" />
+      <File FileName="WBproject/Views/Home/Map.cshtml" Line="55" Column="26" />
       <File FileName="WBproject/Controllers/HomeController.cs" Line="36" Column="42" />
       <File FileName="WBproject/Program.cs" Line="52" Column="41" />
       <File FileName="WBproject/Crimes.cs" Line="74" Column="52" />
@@ -9,10 +9,10 @@
       <File FileName="WBproject/Startup.cs" Line="45" Column="48" />
       <File FileName="WBproject/Properties/launchSettings.json" Line="10" Column="16" />
       <File FileName="WBproject/Models/Point.cs" Line="10" Column="16" />
-      <File FileName="WBproject/Views/Home/Contact.cshtml" Line="11" Column="17" />
+      <File FileName="WBproject/Views/Home/Contact.cshtml" Line="13" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
