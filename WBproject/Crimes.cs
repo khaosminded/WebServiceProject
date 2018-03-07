@@ -40,7 +40,7 @@ namespace WBproject
         }
         public void get(Location locate, int radius)
         {
-            get(locate,radius,1000);
+            get(locate,radius,999);
         }
         public void get(Location locate,int radius,int limit)
         {

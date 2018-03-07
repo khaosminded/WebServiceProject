@@ -1,13 +1,15 @@
 ﻿using System;
 using SODA;
 using System.Collections.Generic;
-using System.Collections;
+
 using WBproject.Models;
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
+
 namespace WBproject
 {
     public class TrafficCollision
     {
-        public ArrayList list;
+        public ArrayList<Collision> list;
         public class Collision
         {
 
@@ -20,7 +22,7 @@ namespace WBproject
             public string place;
             public override string ToString()
             {
-                return string.Format("[Collision: most_severe_injury_type={0}, date={1}, weather={2}, lighting_conditions={3}, jurisdiction={4}]", most_severe_injury_type, date, weather, lighting_conditions, jurisdiction);
+                return string.Format("At {5}, {0} caused by a traffic collision under {2} & {3} condition, on {1}. jurisdiction:{4}", most_severe_injury_type, date, weather, lighting_conditions, jurisdiction,coordinate.reverseGeocoding());
             }
 
         }
@@ -28,9 +30,13 @@ namespace WBproject
 		
         public TrafficCollision()
         {
-            list = new ArrayList();
+            list = new ArrayList<Collision>();
         }
-        public void get(Location locate,int radius)
+        public void get(Location locate, int radius)
+        {
+            get(locate, radius, 999);
+        }
+        public void get(Location locate,int radius,int limit)
         {
             //https://data.cityoftacoma.org/resource/kjk6-j7c9.json
             var client = new SodaClient("data.cityoftacoma.org", "faxxyxOUEBkwIxlgvMgFaEViQ");
@@ -39,7 +45,7 @@ namespace WBproject
             string sql = "within_circle(collision_location," +
                 locate.latitude.ToString() + "," +
                       locate.longitude.ToString() + "," + radius.ToString() + ")";
-            var soql = new SoqlQuery().Where(sql).Limit(10);
+            var soql = new SoqlQuery().Where(sql).Limit(limit);
             var results = dataset.Query(soql);
             foreach (var row in results)
             {

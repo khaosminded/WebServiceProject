@@ -20,4 +20,7 @@
   <ItemGroup>
     <Compile Remove="IncidentInterface.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
 </Project>

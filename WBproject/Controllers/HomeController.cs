@@ -17,30 +17,35 @@ namespace WBproject.Controllers
 
         public IActionResult Map()
         {
-            return Map(47.246748, -122.440114);
+            return Map(47.246748, -122.440114,250,5);
 
         }
         [Route("Home/Map/$lat={lat}$lng={lng}")]
         public IActionResult Map(double lat, double lng)
         {
+            return Map(lat, lng, 250, 5);
+        }
+        [Route("Home/Map/$lat={lat}$lng={lng}$radius={radius}/{limit}")]
+        public IActionResult Map(double lat, double lng, int radius, int limit)
+        {
             ViewData["Message"] = "Events Map!";
+            ViewData["lat"] = lat;
+            ViewData["lng"] = lng;
+            Location loc = new Location(lng, lat);
+            Events events = new Events(loc, radius, limit);
 
-            Crimes crime = new Crimes();
-            Location loc = new Location(lng,lat);
-            crime.get(loc, 250, 5);
             IList<Point> locList = new List<Point>();
             IList<string> eventList = new List<string>();
-            foreach (var c in crime.list)
+            foreach (var c in events.list)
             {
-                locList.Add(new Point() { lng = c.loc.longitude.ToString(), lat = c.loc.latitude.ToString() });
-                eventList.Add(c.ToString());
-                Console.WriteLine(c.crime);
+                locList.Add(new Point() { lng = c.loc.lng, lat = c.loc.lat });
+                eventList.Add(c.Des);
+
             }
 
-            Console.WriteLine("!!&!*@#!((((((requested");
 
-            ViewData["crimeLocList"] = locList;
-            ViewData["crimeEventList"] = eventList;
+            ViewData["LocList"] = locList;
+            ViewData["EventList"] = eventList;
             return View();
 
         }

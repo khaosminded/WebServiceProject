@@ -15,6 +15,8 @@ namespace WBproject
         public float longitude;
         public float latitude;
         public string zipcode;
+
+        public string formatAddr;
         public Location()
         {
 
@@ -76,11 +78,7 @@ namespace WBproject
                 
             //Console.WriteLine(serviceResult);
         }
-        public void Geocoding()
-        {
-            //google api key
-            //AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0
-        }
+
         public override string ToString()
         {
             return city+","+state+","+zipcode;
@@ -113,10 +111,15 @@ namespace WBproject
             string json = readStream.ReadToEnd();
             JObject jo = JObject.Parse(json);
 
-             
 
-            return (string)jo["results"][0]["formatted_address"]; 
+            formatAddr = (string)jo["results"][0]["formatted_address"];
+            return formatAddr; 
 
+        }
+        public void Geocoding()
+        {
+            //google api key
+            //AIzaSyAeKNcZyUlkSoXS4KRiB3JxRkJYLst1Ef0
         }
     }
 }

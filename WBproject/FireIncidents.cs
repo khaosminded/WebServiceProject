@@ -1,13 +1,14 @@
 ﻿using System;
 using SODA;
+
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace WBproject
 {
     public class FireIncidents
     {
-        public ArrayList list;
+        public ArrayList<Fire> list;
         public class Fire
         {
             
@@ -34,10 +35,14 @@ namespace WBproject
         }
         public FireIncidents()
         {
-            list = new ArrayList();
+            list = new ArrayList<Fire>();
 
         }
-        public void get(Location locate,int radius)
+        public void get(Location locate, int radius)
+        {
+            get(locate, radius, 999);
+        }
+        public void get(Location locate,int radius,int limit)
         {
 
             //initialize a new client
@@ -58,7 +63,7 @@ namespace WBproject
             string sql = "within_circle(location," + 
                 locate.latitude.ToString() + "," + 
                       locate.longitude.ToString() + ","+radius.ToString()+")";
-            var soql = new SoqlQuery().Where(sql);
+            var soql = new SoqlQuery().Where(sql).Limit(limit);
 
             var results = dataset.Query(soql);
 

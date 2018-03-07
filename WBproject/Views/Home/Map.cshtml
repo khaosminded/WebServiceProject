@@ -31,7 +31,7 @@
   <div class="column">
         <p>SOME DETAILS</p>
         <div style="width:500px;height:380px;overflow: auto;">
-@foreach (var v in ViewData["crimeEventList"] as IList<string> )
+@foreach (var v in ViewData["EventList"] as IList<string> )
     { 
             <p># @v</p>
 
@@ -43,7 +43,7 @@
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 47, lng: -122.644},
+          center: {lat: @ViewData["lat"], lng: @ViewData["lng"]},
           zoom: 14
         });
         var you = new google.maps.InfoWindow({content:"You"});
@@ -59,8 +59,8 @@
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: @ViewData["lat"],
+              lng: @ViewData["lng"]
             };
             map.setCenter(pos);
             you.setPosition(pos);
@@ -70,14 +70,14 @@
 
             var pList=[];
             var iList=[];
-@foreach (var v in ViewData["crimeLocList"] as IList<Point> )
+@foreach (var v in ViewData["LocList"] as IList<Point> )
 {
     <text>
     var point={lat:@(v.lat),lng:@(v.lng)};
     pList.push(point);
     </text>
 }
-@foreach (var e in ViewData["crimeEventList"] as IList<string> )
+@foreach (var e in ViewData["EventList"] as IList<string> )
 {
     <text>
     var info="@e";

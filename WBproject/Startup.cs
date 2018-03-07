@@ -42,7 +42,7 @@ namespace WBproject
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Map}/{id?}");
+                    template: "{controller=Home}/{action=Contact}/{id?}");
             });
         }
     }
