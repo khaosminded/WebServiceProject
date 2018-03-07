@@ -45,7 +45,7 @@ namespace WBproject.Models
                 Event tmp = new Event(point, trafficCollision.list[i].ToString());
                 this.list.Add(tmp);
             }
-            for (int i = 1; i < fireIncidents.list.Length; i++)
+            for (int i = 0; i < fireIncidents.list.Length; i++)
             {
                 Point point = new Point()
                 {

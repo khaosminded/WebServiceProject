@@ -8,5 +8,9 @@ namespace WBproject.Models
 
         public string lng { get; set; }
         public string lat { get; set; }
+        public string ToString()
+        {
+            return "(" + lat + "," + lng + ")";
+        }
     }
 }

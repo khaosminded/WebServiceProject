@@ -10,6 +10,8 @@ namespace WBproject.Controllers
 {
     public class HomeController : Controller
     {
+        public double EPSILON = 0.000001;
+
         public IActionResult Index()
         {
             return View();
@@ -17,7 +19,8 @@ namespace WBproject.Controllers
 
         public IActionResult Map()
         {
-            return Map(47.246748, -122.440114,250,5);
+            ViewData["GPS"] = "true";
+            return Map(47.246748, -122.440328,250,5);
 
         }
         [Route("Home/Map/$lat={lat}$lng={lng}")]
@@ -28,9 +31,11 @@ namespace WBproject.Controllers
         [Route("Home/Map/$lat={lat}$lng={lng}$radius={radius}/{limit}")]
         public IActionResult Map(double lat, double lng, int radius, int limit)
         {
+            if (Math.Abs(lat - 47.246748) < EPSILON && Math.Abs(lng - -122.440328) < EPSILON) ViewData["GPS"] = false;
             ViewData["Message"] = "Events Map!";
             ViewData["lat"] = lat;
             ViewData["lng"] = lng;
+            ViewData["radius"] = radius;
             Location loc = new Location(lng, lat);
             Events events = new Events(loc, radius, limit);
 
